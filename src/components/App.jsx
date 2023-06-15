@@ -25,8 +25,10 @@ export class App extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts));
+    }
   }
 
    handleSubmit = data => {
